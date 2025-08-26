@@ -6,6 +6,7 @@ import {
 	type ZodTypeProvider,
 } from 'fastify-type-provider-zod'
 import { env } from './env.ts'
+import { getRoomsRoute } from './http/routes/get-rooms.ts'
 
 if (!env) {
 	throw new Error(' .env not found')
@@ -19,6 +20,8 @@ server.register(fastifyCors, {
 
 server.setSerializerCompiler(serializerCompiler)
 server.setValidatorCompiler(validatorCompiler)
+
+server.register(getRoomsRoute)
 
 server.get('/health', (req, reply) => {
 	reply.status(200).send('OK')
