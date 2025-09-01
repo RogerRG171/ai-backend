@@ -7,6 +7,9 @@ import {
 } from 'fastify-type-provider-zod'
 import { env } from './env.ts'
 import { getRoomsRoute } from './http/routes/get-rooms.ts'
+import { createRoomRoute } from './http/routes/create-room.ts'
+import { getRoomQuestionsRoute } from './http/routes/get-room-questions.ts'
+import { createQuestionRoute } from './http/routes/create-question.ts'
 
 if (!env) {
 	throw new Error(' .env not found')
@@ -22,6 +25,9 @@ server.setSerializerCompiler(serializerCompiler)
 server.setValidatorCompiler(validatorCompiler)
 
 server.register(getRoomsRoute)
+server.register(createRoomRoute)
+server.register(getRoomQuestionsRoute)
+server.register(createQuestionRoute)
 
 server.get('/health', (req, reply) => {
 	reply.status(200).send('OK')
