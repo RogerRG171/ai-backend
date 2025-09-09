@@ -10,7 +10,7 @@ export const createRoomRoute: FastifyPluginCallbackZod = async (server) => {
 			schema: {
 				body: z.object({
 					name: z.string().min(3).max(150),
-					description: z.string().min(3).max(255).optional(),
+					description: z.string().optional(),
 				}),
 				response: {
 					201: z.object({
