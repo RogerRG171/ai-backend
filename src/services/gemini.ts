@@ -48,3 +48,41 @@ export const generateEmbeddings = async (text: string) => {
 
 	return response.embeddings?.[0].values
 }
+
+export const generateAnswer = async (
+	question: string,
+	transcriptions: string[],
+) => {
+	const context = transcriptions.join('\n\n')
+
+	const prompt = `Combase no texto fornecido abaixo
+	gere um resposta para a pergunta em português BR. 
+	Seja breve e preciso, utilize pontuação adequadamente.
+	
+	Contexto:
+	${context}
+
+	Pergunta:
+	${question}
+
+	Intruções:
+	- Use apenas informações contidas no contexto enviado;
+	- Se a resposta não for encontrada no contexto, responda que não possui informações suficientes;
+	- Cite trechos relevantes do contexto se apropriado;
+	`.trim()
+
+	const response = await gemini.models.generateContent({
+		model,
+		contents: [
+			{
+				text: prompt,
+			},
+		],
+	})
+
+	if (!response.text) {
+		throw new Error('Failed to generate answer.')
+	}
+
+	return response.text
+}
