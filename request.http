@@ -30,9 +30,9 @@ Content-Type: application/json
 
 ### Create Question
 # @name getRoomQuestions
-POST {{baseUrl}}/rooms/{{roomId}}/questions
+POST {{baseUrl}}/rooms/e06fd7f6-2090-4105-f0db-55807961e7b0/questions
 Content-Type: application/json
 
 {
-    "question": "Um mais 12?"
+    "question": "Quem sou eu?"
 }
