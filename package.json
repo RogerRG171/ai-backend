@@ -25,14 +25,16 @@
 		"dotenv-cli": "^10.0.0",
 		"drizzle-kit": "^0.31.4",
 		"drizzle-seed": "^0.3.1",
+		"supertest": "^7.1.4",
 		"typescript": "^5.9.2",
 		"ultracite": "^5.2.3",
-		"supertest": "^7.1.4",
 		"vitest": "^3.2.4"
 	},
 	"dependencies": {
 		"@fastify/cors": "^11.1.0",
 		"@fastify/multipart": "^9.2.1",
+		"@fastify/swagger": "^9.5.1",
+		"@fastify/swagger-ui": "^5.2.3",
 		"@google/genai": "^1.17.0",
 		"drizzle-orm": "^0.44.5",
 		"fastify": "^5.5.0",
