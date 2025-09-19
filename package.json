@@ -2,10 +2,10 @@
 	"name": "backend",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
+	"main": "src/server.ts",
 	"type": "module",
 	"scripts": {
-		"start": "node --env-file .env --experimental-strip-types src/server.ts",
+		"start": "node --experimental-strip-types src/server.ts",
 		"dev": "node --env-file .env --experimental-strip-types --watch src/server.ts",
 		"db:generate": "npx drizzle-kit generate",
 		"db:migrate": "npx drizzle-kit migrate",
