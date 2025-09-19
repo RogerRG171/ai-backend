@@ -118,7 +118,7 @@ The project includes comprehensive integration tests using Vitest and Supertest:
 - Full HTTP request/response testing
 - Database connection management
 
-## �� API Testing with HTTP Files
+## 🪛 API Testing with HTTP Files
 
 The project includes a `request.http` file for testing API endpoints:
 
