@@ -11,12 +11,27 @@ export const createQuestionRoute: FastifyPluginCallbackZod = async (server) => {
 		'/rooms/:roomId/questions',
 		{
 			schema: {
+				tags: ['Questions'],
+				summary: 'Create a new question',
+				description: 'Create a new question with a question and a roomId',
 				params: z.object({
-					roomId: z.string(),
+					roomId: z.string().describe('A valid uuid'),
 				}),
 				body: z.object({
-					question: z.string().min(3).max(255),
+					question: z
+						.string()
+						.min(3)
+						.max(255)
+						.describe('Question min 3 max 255'),
 				}),
+				response: {
+					201: z
+						.object({
+							questionId: z.string(),
+							answer: z.string().nullable(),
+						})
+						.describe('Question created successfully'),
+				},
 			},
 		},
 		async (request, reply) => {

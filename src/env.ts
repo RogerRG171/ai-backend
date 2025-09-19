@@ -6,6 +6,7 @@ const envSchema = z.object({
 	API_KEY: z.string(),
 	FRONTEND_URL: z.url(),
 	HOST_URL: z.string(),
+	NODE_ENV: z.string(),
 })
 
 export const env = envSchema.parse(process.env)

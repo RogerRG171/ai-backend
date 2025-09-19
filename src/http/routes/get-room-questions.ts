@@ -11,20 +11,25 @@ export const getRoomQuestionsRoute: FastifyPluginCallbackZod = async (
 		'/rooms/:roomId/questions',
 		{
 			schema: {
+				tags: ['Questions'],
+				summary: 'Get all questions for a room',
+				description: 'Get all questions for a room with a roomId',
 				params: z.object({
-					roomId: z.string().describe(' Room ID'),
+					roomId: z.string().describe(' A valid uuid'),
 				}),
 				response: {
-					200: z.object({
-						questions: z.array(
-							z.object({
-								id: z.string(),
-								question: z.string(),
-								answer: z.string().nullable(),
-								createdAt: z.date(),
-							}),
-						),
-					}),
+					200: z
+						.object({
+							questions: z.array(
+								z.object({
+									id: z.string(),
+									question: z.string(),
+									answer: z.string().nullable(),
+									createdAt: z.date(),
+								}),
+							),
+						})
+						.describe('Return Questions ordered by createdAt descending'),
 				},
 			},
 		},

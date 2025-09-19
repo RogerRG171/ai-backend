@@ -9,9 +9,19 @@ export const uploadAudioRoute: FastifyPluginCallbackZod = async (server) => {
 		'/rooms/:roomId/audio',
 		{
 			schema: {
+				tags: ['Audio'],
+				summary: 'Upload an audio file',
+				description: 'Upload an audio file with a roomId',
 				params: z.object({
-					roomId: z.string(),
+					roomId: z.string().describe(' A valid uuid'),
 				}),
+				response: {
+					201: z
+						.object({
+							chunkId: z.string(),
+						})
+						.describe('Audio chunk created successfully'),
+				},
 			},
 		},
 		async (request, reply) => {
