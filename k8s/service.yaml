@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: ai-api-ns
+  name: ai-api-svc
+  labels:
+    app: ai-api
+spec:
+  selector:
+    app: ai-api
+  type: ClusterIP
+  ports:
+    - name: ai-api-svc
+      port: 80
+      targetPort: 3333
+      protocol: TCP

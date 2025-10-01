@@ -64,3 +64,5 @@ build
 # Database
 *.db
 *.sqlite
+
+k8s

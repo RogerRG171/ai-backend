@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: ai-api-ns
+  name: ai-api-deploy
+  labels:
+    app: ai-api
+
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: ai-api
+  template:
+    metadata:
+      labels:
+        app: ai-api
+    spec:
+      containers:
+        - name: ai-api
+          image: roger171/api.ai.backend:43d449e
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: api-config
+                  key: DATABASE_URL
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: api-config
+                  key: API_KEY
+            - name: FRONTEND_URL
+              valueFrom:
+                secretKeyRef:
+                  name: api-config
+                  key: FRONTEND_URL
+            - name: HOST_URL
+              valueFrom:
+                secretKeyRef:
+                  name: api-config
+                  key: HOST_URL
+            - name: NODE_ENV
+              valueFrom:
+                secretKeyRef:
+                  name: api-config
+                  key: NODE_ENV
+          ports:
+            - containerPort: 3333
+          resources:
+            requests:
+              cpu: 200m
+              memory: 256Mi
+            limits:
+              cpu: 400m
+              memory: 512Mi
