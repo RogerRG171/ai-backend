@@ -2,9 +2,11 @@ import { reset, seed } from 'drizzle-seed'
 import { schema } from './schema/index.ts'
 import { db, sql } from './postgres.ts'
 
-await reset(db, schema)
+const { questions, rooms } = schema
 
-await seed(db, schema).refine((f) => {
+await reset(db, { questions, rooms })
+
+await seed(db, { questions, rooms }).refine((f) => {
 	return {
 		rooms: {
 			count: 20,
