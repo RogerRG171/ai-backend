@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: git@github.com:RogerRG171/ai-backend.git
+    repoURL: https://github.com/RogerRG171/ai-backend.git
     targetRevision: HEAD
     path: helm
   destination:

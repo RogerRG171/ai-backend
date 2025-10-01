@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: ai-api
-          image: roger171/api.ai.backend:43d449e
+          image: roger171/api.ai.backend:846557d
           env:
             - name: DATABASE_URL
               valueFrom:
