@@ -5,6 +5,9 @@ on:
     branches:
      - main
 
+permissions:
+  contents: write
+
 jobs:
   build-and-push:
     name: 'Build and Push'
@@ -13,6 +16,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate sha
         id: generate_sha
@@ -50,4 +55,4 @@ jobs:
           git config --local user.name "GitHub Action"
           git add helm/values.yaml
           git diff --staged --quiet || git commit -m "Update image tag to ${{ steps.generate_sha.outputs.sha }} [skip ci]"
-          git push
+          git push https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
