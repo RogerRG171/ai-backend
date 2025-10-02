@@ -2,10 +2,9 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: {{ include "helm.fullname" . }}
-  namespace: {{ .Values.namespace }}
+  namespace: default
   labels:
-    release: prometheus
-    {{- include "helm.labels" . | nindent 4 }}
+    release: monitoring
 spec:
   selector:
     matchLabels:
