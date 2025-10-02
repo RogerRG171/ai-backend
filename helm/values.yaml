@@ -9,7 +9,7 @@ namespace: ai-api-ns
 image:
   repository: roger171/api.ai.backend
   pullPolicy: Always
-  tag: "5511422"
+  tag: "dc75b79"
   port: 3333
 
 imagePullSecrets: []
