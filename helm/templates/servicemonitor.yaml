@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "helm.fullname" . }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    release: prometheus
+    {{- include "helm.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ include "helm.name" . }}
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 15s
+     

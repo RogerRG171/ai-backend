@@ -15,6 +15,7 @@ import { createQuestionRoute } from './http/routes/create-question.ts'
 import { uploadAudioRoute } from './http/routes/upload-audio.ts'
 import fastifySwagger from '@fastify/swagger'
 import fastifySwaggerUi from '@fastify/swagger-ui'
+const fastifyMetrics = require('fastify-metrics')
 
 if (!env) {
 	throw new Error(' .env not found')
@@ -42,6 +43,12 @@ if (env.NODE_ENV === 'development') {
 	})
 }
 
+server.register(fastifyMetrics, {
+	endpoint: '/metrics',
+	defaultMetrics: true,
+	routeMetrics: true,
+})
+
 server.register(fastifyMultipart)
 
 server.setSerializerCompiler(serializerCompiler)
@@ -49,6 +56,10 @@ server.setValidatorCompiler(validatorCompiler)
 
 server.get('/health', (request, reply) => {
 	return { status: 'ok' }
+})
+
+server.get('ping', async () => {
+	return { pong: 'it worked!' }
 })
 
 server.register(getRoomsRoute)
