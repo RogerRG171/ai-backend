@@ -8,7 +8,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: {{ include "helm.name" . }}
+      app: {{ include "helm.fullname" . }}
   endpoints:
     - port: http
       path: /metrics
