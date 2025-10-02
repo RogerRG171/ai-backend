@@ -38,7 +38,6 @@
 		"@google/genai": "^1.17.0",
 		"drizzle-orm": "^0.44.5",
 		"fastify": "^5.5.0",
-		"fastify-metrics": "^12.1.0",
 		"fastify-type-provider-zod": "^5.0.3",
 		"postgres": "^3.4.7",
 		"prom-client": "^15.1.3",
